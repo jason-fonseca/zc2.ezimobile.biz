@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI}      !/mobile
+RewriteCond %{REQUEST_URI}      !/includes
+RewriteCond %{REQUEST_URI}      !/images
+RewriteCond %{REQUEST_URI} 		!/ipn_main_handler.php
+RewriteCond %{HTTP_USER_AGENT} /iPhone|Android|\s+Mobile
+RewriteRule .* mobile.php [E=template:phone]
+RewriteCond %{HTTP_USER_AGENT} iPad|(Android^((?!mobile).)*$)
+RewriteRule .* mobile.php [E=template:tablet]
